@@ -46,7 +46,7 @@ pipeline {
       }
     }
     stage('Push Images') {
-     // when { branch 'main' } only master
+      when { branch 'master' } 
       steps {
 			script {
 			  docker.withRegistry('https://index.docker.io/v1/', 'DockerHub') {           
