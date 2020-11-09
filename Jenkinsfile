@@ -50,9 +50,27 @@ pipeline {
       steps {
         script {
           docker.withRegistry('https://index.docker.io/v1/', 'DockerHub') {
-            def image = docker.image("ivaylokenov/carrentalsystem-identity-service")
-            image.push("1.0.${env.BUILD_ID}")
-            image.push('latest')
+            
+			def identityImage = docker.image("sekul/carrentalsystem_identity")
+            identityImage.push('latest')
+			
+			def watchdogImage = docker.image("sekul/carrentalsystem_watchdog")
+            watchdogImage.push('latest')
+			
+			def dealerImage = docker.image("sekul/carrentalsystem_dealer")
+            dealerImage.push('latest')
+			
+			def statisticsImage = docker.image("sekul/carrentalsystem_statistics")
+            statisticsImage.push('latest')
+			
+			def notificationsImage = docker.image("sekul/carrentalsystem_notifications")
+            notificationsImage.push('latest')
+			
+			def adminImage = docker.image("sekul/carrentalsystem_admin")
+            adminImage.push('latest') 
+			
+			def clientImage = docker.image("sekul/angular-client")
+            clientImage.push('latest') 
           }
         }
       }
