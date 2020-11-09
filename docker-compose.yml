@@ -13,7 +13,7 @@ services:
         volumes: 
             - sqldata:/var/opt/mssql 
         networks: 
-            - carrentalsystem-network
+            - bridge
     
     messages:
         container_name: rabbitmq
@@ -27,11 +27,11 @@ services:
         volumes:
             - rabbitmq:/var/lib/rabbitmq/mnesia
         networks: 
-            - carrentalsystem-network
+            - bridge
 
     identity:
         container_name: identity
-        image: ivaylokenov/carrentalsystem-identity-service
+        image: sekul/carrentalsystem_identity
         build:
             context: ./Server
             dockerfile: ./CarRentalSystem.Identity/Dockerfile
@@ -45,13 +45,13 @@ services:
         volumes:
             - data-protection:/root/.aspnet/DataProtection-Keys
         networks: 
-            - carrentalsystem-network
+            - bridge
         depends_on:
             - data
             
     dealers:
         container_name: dealers
-        image: ivaylokenov/carrentalsystem-dealers-service
+        image: sekul/carrentalsystem_dealer
         build:
             context: ./Server
             dockerfile: ./CarRentalSystem.Dealers/Dockerfile
@@ -69,14 +69,14 @@ services:
         volumes:
             - data-protection:/root/.aspnet/DataProtection-Keys
         networks: 
-            - carrentalsystem-network
+            - bridge
         depends_on:
             - data
             - messages
             
     statistics:
         container_name: statistics
-        image: ivaylokenov/carrentalsystem-statistics-service
+        image: sekul/carrentalsystem_statistics
         build:
             context: ./Server
             dockerfile: ./CarRentalSystem.Statistics/Dockerfile
@@ -94,14 +94,14 @@ services:
         volumes:
             - data-protection:/root/.aspnet/DataProtection-Keys
         networks: 
-            - carrentalsystem-network
+            - bridge
         depends_on:
             - data
             - messages
             
     notifications:
         container_name: notifications
-        image: ivaylokenov/carrentalsystem-notifications-service
+        image: sekul/carrentalsystem_notifications
         build:
             context: ./Server
             dockerfile: ./CarRentalSystem.Notifications/Dockerfile
@@ -118,13 +118,13 @@ services:
         volumes:
             - data-protection:/root/.aspnet/DataProtection-Keys
         networks: 
-            - carrentalsystem-network
+            - bridge
         depends_on:
             - messages
 
     client:
         container_name: client
-        image: ivaylokenov/carrentalsystem-user-client
+        image: sekul/angular-client
         build:
             context: ./Client
             dockerfile: ./Dockerfile
@@ -141,7 +141,7 @@ services:
             
     admin:
         container_name: admin
-        image: ivaylokenov/carrentalsystem-admin-client
+        image: sekul/carrentalsystem_admin
         build:
             context: ./Server
             dockerfile: ./CarRentalSystem.Admin/Dockerfile
@@ -156,7 +156,7 @@ services:
         volumes:
             - data-protection:/root/.aspnet/DataProtection-Keys
         networks: 
-            - carrentalsystem-network
+            - bridge
         depends_on:
             - identity
             - dealers
@@ -164,7 +164,7 @@ services:
             
     watchdog:
         container_name: watchdog
-        image: ivaylokenov/carrentalsystem-watchdog-service
+        image: sekul/carrentalsystem_watchdog
         build:
             context: ./Server
             dockerfile: ./CarRentalSystem.Watchdog/Dockerfile
@@ -183,7 +183,7 @@ services:
             - HealthChecks-UI__HealthChecks__4__Uri=http://admin/health
         restart: on-failure
         networks: 
-            - carrentalsystem-network
+            - bridge
         depends_on:
             - identity
             - dealers
@@ -192,7 +192,7 @@ services:
             - admin
 
 networks:
-    carrentalsystem-network:
+    bridge:
 
 volumes:
     sqldata:
