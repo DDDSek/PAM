@@ -12,7 +12,7 @@ do {
 		$testStart = Invoke-WebRequest -Uri $arrayApis[$i] -UseBasicParsing
     
 		if ($testStart.statuscode -eq '200' -Or $testStart.statuscode -eq '401') {
-		 # $started = $true
+		    $started = $true
 		} 
 		else {
 		  Start-Sleep -Seconds 5 
@@ -20,7 +20,7 @@ do {
 		
 	}
 	
-		  $started = $false
+		 # $started = $false
 } until ($started -or ($count -eq 3))
 
 if (!$started) {
