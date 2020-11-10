@@ -5,10 +5,10 @@ $arrayApis = @("http://localhost", "http://localhost:5000/", "http://localhost:5
 do {
     $count++
 	
-     
+      Write-Output "[$env:STAGE_NAME] Starting container [Attempt: $count]"
 	
 	for($i = 0; $i -lt $arrayApis.length; $i++){ 
- Write-Output "[$env:STAGE_NAME] Starting container [Attempt: $count]"
+  
 		$testStart = Invoke-WebRequest -Uri $arrayApis[$i] -UseBasicParsing
     
 		if ($testStart.statuscode -eq '200' -Or $testStart.statuscode -eq '401') {
