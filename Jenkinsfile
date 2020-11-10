@@ -96,11 +96,14 @@ pipeline {
 			  }
 			}
           }
-        }
+        }  	  
 	  
+      }
 	
-	  
-	   post {
+	
+	
+	
+post {
     failure {
         mail to: 'telerikcsharp1@gmail.com',
              subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
@@ -112,8 +115,10 @@ pipeline {
              body: "Build with ${env.BUILD_URL} succeeded"
     }
   }  
-	  
-	  
-	  
-      }
+	
+	
+	
+	
+	
+	
     }
