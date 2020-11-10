@@ -98,8 +98,7 @@ pipeline {
           }
         }  	  
 	  
-      }
-	
+      }	
 	
    post {
       failure {
@@ -107,12 +106,12 @@ pipeline {
                subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
                body: "Something is wrong with ${env.BUILD_URL}"
       }
-     success {
+	   
+      success {
          mail to: 'telerikcsharp1@gmail.com',
               subject: "Success Pipeline: ${currentBuild.fullDisplayName}",
               body: "Build with ${env.BUILD_URL} succeeded"
-     }
+      }
   } 
-	
-	
+		
     }
