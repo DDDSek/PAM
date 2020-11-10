@@ -15,8 +15,7 @@ do {
 		  $started = $true
 		} 
 		else {
-		  Start-Sleep -Seconds 5
-		   Write-Output "[$env:STAGE_NAME] Starting container container  [Attempt: $count]"
+		  Start-Sleep -Seconds 5 
 		}
 		
 	}
