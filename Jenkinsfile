@@ -49,37 +49,37 @@ pipeline {
       when { branch 'master' } 
       steps {						
             script {
-		     docker.withRegistry('https://index.docker.io/v1/', 'DockerHub') {           
+		     docker.withRegistry('https://index.docker.io/v1/', 'Docker Hub') {           
 				def identityImage = docker.image("sekul/carrentalsystem_identity")
 				identityImage.push('latest')
 			  }
 			
-			  docker.withRegistry('https://index.docker.io/v1/', 'DockerHub') {		
+			  docker.withRegistry('https://index.docker.io/v1/', 'Docker Hub') {		
 				def watchdogImage = docker.image("sekul/carrentalsystem_watchdog")
 				watchdogImage.push('latest')
 			  }
 			
-			  docker.withRegistry('https://index.docker.io/v1/', 'DockerHub') {				
+			  docker.withRegistry('https://index.docker.io/v1/', 'Docker Hub') {				
 				def dealerImage = docker.image("sekul/carrentalsystem_dealer")
 				dealerImage.push('latest')
 			  }
 			
-			  docker.withRegistry('https://index.docker.io/v1/', 'DockerHub') {			
+			  docker.withRegistry('https://index.docker.io/v1/', 'Docker Hub') {			
 				def statisticsImage = docker.image("sekul/carrentalsystem_statistics")
 				statisticsImage.push('latest')
 			  }	
 
-			  docker.withRegistry('https://index.docker.io/v1/', 'DockerHub') {			
+			  docker.withRegistry('https://index.docker.io/v1/', 'Docker Hub') {			
 				def notificationsImage = docker.image("sekul/carrentalsystem_notifications")
 				notificationsImage.push('latest')
 			  }	
 
-			  docker.withRegistry('https://index.docker.io/v1/', 'DockerHub') {			
+			  docker.withRegistry('https://index.docker.io/v1/', 'Docker Hub') {			
 				def adminImage = docker.image("sekul/carrentalsystem_admin")
 				adminImage.push('latest') 
 			  }
 			
-			  docker.withRegistry('https://index.docker.io/v1/', 'DockerHub') {	
+			  docker.withRegistry('https://index.docker.io/v1/', 'Docker Hub') {	
 				def clientImage = docker.image("sekul/angular-client")
 				clientImage.push('latest') 
 			}
