@@ -13,7 +13,7 @@ services:
         volumes: 
             - sqldata:/var/opt/mssql 
         networks: 
-            - bridge
+            - carrentalsystem-network
     
     messages:
         container_name: rabbitmq
@@ -27,7 +27,7 @@ services:
         volumes:
             - rabbitmq:/var/lib/rabbitmq/mnesia
         networks: 
-            - bridge
+            - carrentalsystem-network
 
     identity:
         container_name: identity
@@ -45,7 +45,7 @@ services:
         volumes:
             - data-protection:/root/.aspnet/DataProtection-Keys
         networks: 
-            - bridge
+            - carrentalsystem-network
         depends_on:
             - data
             
@@ -69,7 +69,7 @@ services:
         volumes:
             - data-protection:/root/.aspnet/DataProtection-Keys
         networks: 
-            - bridge
+            - carrentalsystem-network
         depends_on:
             - data
             - messages
@@ -94,7 +94,7 @@ services:
         volumes:
             - data-protection:/root/.aspnet/DataProtection-Keys
         networks: 
-            - bridge
+            - carrentalsystem-network
         depends_on:
             - data
             - messages
@@ -118,7 +118,7 @@ services:
         volumes:
             - data-protection:/root/.aspnet/DataProtection-Keys
         networks: 
-            - bridge
+            - carrentalsystem-network
         depends_on:
             - messages
 
@@ -129,7 +129,7 @@ services:
             context: ./Client
             dockerfile: ./Dockerfile
             args:
-                configuration: development
+                configuration: local
         ports: 
             - "80:80"
         restart: on-failure
@@ -156,7 +156,7 @@ services:
         volumes:
             - data-protection:/root/.aspnet/DataProtection-Keys
         networks: 
-            - bridge
+            - carrentalsystem-network
         depends_on:
             - identity
             - dealers
@@ -183,7 +183,7 @@ services:
             - HealthChecks-UI__HealthChecks__4__Uri=http://admin/health
         restart: on-failure
         networks: 
-            - bridge
+            - carrentalsystem-network
         depends_on:
             - identity
             - dealers
@@ -192,7 +192,7 @@ services:
             - admin
 
 networks:
-    bridge:
+    carrentalsystem-network:
 
 volumes:
     sqldata:
