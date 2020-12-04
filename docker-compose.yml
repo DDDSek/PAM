@@ -31,7 +31,7 @@ services:
 
     identity:
         container_name: identity
-        image: sekul/carrentalsystem_identity
+        image: sekul/carrentalsystem-identity-service
         build:
             context: ./Server
             dockerfile: ./CarRentalSystem.Identity/Dockerfile
@@ -51,7 +51,7 @@ services:
             
     dealers:
         container_name: dealers
-        image: sekul/carrentalsystem_dealer
+        image: sekul/carrentalsystem-dealers-service
         build:
             context: ./Server
             dockerfile: ./CarRentalSystem.Dealers/Dockerfile
@@ -76,7 +76,7 @@ services:
             
     statistics:
         container_name: statistics
-        image: sekul/carrentalsystem_statistics
+        image: sekul/carrentalsystem-statistics-service
         build:
             context: ./Server
             dockerfile: ./CarRentalSystem.Statistics/Dockerfile
@@ -101,7 +101,7 @@ services:
             
     notifications:
         container_name: notifications
-        image: sekul/carrentalsystem_notifications
+        image: sekul/carrentalsystem-notifications-service
         build:
             context: ./Server
             dockerfile: ./CarRentalSystem.Notifications/Dockerfile
@@ -124,7 +124,7 @@ services:
 
     client:
         container_name: client
-        image: sekul/angular-client
+        image: sekul/carrentalsystem-user-client
         build:
             context: ./Client
             dockerfile: ./Dockerfile
@@ -141,7 +141,7 @@ services:
             
     admin:
         container_name: admin
-        image: sekul/carrentalsystem_admin
+        image: sekul/carrentalsystem-admin-client
         build:
             context: ./Server
             dockerfile: ./CarRentalSystem.Admin/Dockerfile
@@ -164,7 +164,7 @@ services:
             
     watchdog:
         container_name: watchdog
-        image: sekul/carrentalsystem_watchdog
+        image: sekul/carrentalsystem-watchdog-service
         build:
             context: ./Server
             dockerfile: ./CarRentalSystem.Watchdog/Dockerfile
